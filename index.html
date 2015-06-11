@@ -165,7 +165,7 @@ function myFunc (withArg) {
 
         <section>
           <h1>Functions</h1>
-          <p>No subject: <code><strong>aFunction()</strong></code>.</p>
+          <p>No subject: <code><strong>myFunction()</strong></code>.</p>
           <p>e.g. <code><strong>alert("A Message")</strong></code>.</p>
           <aside class="notes">
             ... And a description of functions.
@@ -178,7 +178,7 @@ function myFunc (withArg) {
           <p>e.g. <code><strong>console</strong>.log("Example String")</code>.</p>
 
           <h1>Functions</h1>
-          <p>No subject: <code><strong>aFunction()</strong></code>.</p>
+          <p>No subject: <code><strong>myFunction()</strong></code>.</p>
           <p>e.g. <code><strong>alert("A Message")</strong></code>.</p>
 
           <aside class="notes">
@@ -198,7 +198,7 @@ function myFunc (withArg) {
         <section>
           <h1>Creating Methods</h1>
           <pre>
-anObject.itsMethod = function () {
+myObject.itsMethod = function () {
   console.log("Called a method on an object.");
 };
           </pre>
@@ -210,11 +210,11 @@ anObject.itsMethod = function () {
         <section>
           <h1>"this" is What You Wanted</h1>
           <pre>
-anObject.aProperty = "this is a property";
-anObject.aMethod = function () {
+myObject.aProperty = "this is a property";
+myObject.myMethod = function () {
   console.log("The property aProperty is set to: " + this.aProperty");
 };
-anObject.aMethod() <em> // "This property aProperty is set to: this is a property"</em>
+myObject.myMethod() <em> // "This property aProperty is set to: this is a property"</em>
           <aside class="notes">
             "What a minute," you're saying. "What's does 'this' mean, and why are you using it when you still haven't explained what it means for a method to be called with a subject?"
           </aside>
@@ -223,8 +223,8 @@ anObject.aMethod() <em> // "This property aProperty is set to: this is a propert
         <section>
         <h1>"this" is What it Means</h1>
           <pre>
-anObject.aMethod = function () {
-  console.log(anObject === this); <em>// true</em>
+myObject.myMethod = function () {
+  console.log(myObject === this); <em>// true</em>
 }
           </pre>
           <aside class="notes">
@@ -235,20 +235,20 @@ anObject.aMethod = function () {
         <section>
           <h1>Functions and "this"</h1>
           <pre>
-function aFunc() {
-  console.log(aFunc === this); <em>// <strong>false</strong></em>
+function myFunc() {
+  console.log(myFunc === this); <em>// <strong>false</strong></em>
   <span class="fragment">console.log(window === this); <em>// true (in a browser)</em>
   console.log(root === this); <em>// true (in node.js)</em></span>
 }
           </pre>
           <aside class="notes">
-            What does that mean for functions? In JavaScript, there's <em>always</em> a "this". Browsers default the to "window" object. node.js defaults to "root". Since functions always have a subject, they're indistinguishable from methods.
+            What does that mean for functions? In JavaScript, there's <em>always</em> a "this". Browsers default to the "window" object. node.js defaults to "root". Since functions always have a subject, they're indistinguishable from methods.
         </section>
 
         <section>
           <h1>Functions and Names</h1>
 
-          <pre>var aFunc = function () { /* ... */ }; </pre>
+          <pre>var myFunc = function () { /* ... */ }; </pre>
           
           <aside class="notes">
             The similarities don't end there. They're interchangeable on multiple levels. Functions are first-class, like numbers and strings, etc., so you can assign them to variables. (Not quite the same.)
@@ -258,7 +258,7 @@ function aFunc() {
         <section>
           <h1>Functions as Properties</h1>
 
-          <pre>anObject.aMethod = aFunc;</pre>
+          <pre>myObject.myMethod = myFunc;</pre>
 
           <aside class="notes">
             And that means you can assign functions to objects as properties!
@@ -269,26 +269,26 @@ function aFunc() {
           <h1>"This" is Important</h1>
 
           <pre>
-var aFunc = function () { console.log(this) };
-aFunc(); <em>// "window" or "root"</em>
-anObject.aMethod = aFunc;
-anObject.aMethod(); <em>// ?</em><span class="fragment">
-                    <em>// this === anObject</em></span>
+var myFunc = function () { console.log(this) };
+myFunc(); <em>// "window" or "root"</em>
+myObject.myMethod = myFunc;
+myObject.myMethod(); <em>// ?</em><span class="fragment">
+                    <em>// this === myObject</em></span>
           </pre>
 
           <aside class="notes">
-            Can you guess what "this" will be when aMethod is called? anObject! Correct! By assigning the function to the property of the object, we've changed the function's subject.
+            Can you guess what "this" will be when myMethod is called? myObject! Correct! By assigning the function to the property of the object, we've changed the function's subject.
           </aside>
         </section>
 
         <section>
           <h1>"This" Isn't Always That</h1>
 
-          <pre class="fragment">var aFunc = function () { console.log(this === anObject) };
-anObject.aMethod = aFunc;
-anotherObject.anotherMethod = aFunc;</pre>
-          <pre class="fragment">anObject.aMethod(); <em>// true</em></pre>
-          <pre class="fragment">anotherObject.anotherMethod(); <em>// <strong>false!</strong> anObject !== anotherObject</em></pre>
+          <pre class="fragment">var myFunc = function () { console.log(this === myObject) };
+myObject.myMethod = myFunc;
+anotherObject.anotherMethod = myFunc;</pre>
+          <pre class="fragment">myObject.myMethod(); <em>// true</em></pre>
+          <pre class="fragment">anotherObject.anotherMethod(); <em>// <strong>false!</strong> myObject !== anotherObject</em></pre>
 
           <aside class="notes">
             The value of "this" can change. It all depends on the subject of the method.
@@ -299,7 +299,54 @@ anotherObject.anotherMethod = aFunc;</pre>
           <h1>"This" is Complicated</h1>
 
           <aside class="notes">
-            Don't worry if you're feeling a bit dizzy. This is a lot to absorb at once, and it's still more nuanced than we've covered here. For now, we'll look at some practical uses of functions.
+            This is a lot to absorb at once, so I'll be pausing for questions. We'll look at some practical uses of functions next.
+          </aside>
+        </section>
+
+        <section>
+          <h1>You Can't Return Home Again</h1>
+          <h3>(But you can return other values)</h3>
+
+          <pre>function tripleANumber(aNumber) { return aNumber * 3; }
+console.log(tripleANumber(7)); <em>// 21</em></pre>
+
+          <aside class="notes">
+            You can return values from functions and methods. This is how methods like toUpperCase, as we saw last lesson, work.
+          </aside>
+        </section>
+
+        <section>
+          <h1>War and Pieces of Code</h1>
+          <pre>var complicatedOperation = function (arg1, arg2) {
+  /* Many, many lines of code. */
+};
+
+// Only one line here!
+complicatedOperation(obj1, obj2);
+
+// Run all that code again, without copy/paste!
+complicatedOperation(obj3, obj4);</pre>
+
+          <aside class="notes">
+            If you find that you're about to copy and paste some code, you can put it into a function instead, then call the function in both the original place and the new place. This can save you a <em>lot</em> of trouble when it comes time to change that code down the road.
+          </aside>
+
+        </section>
+
+        <section>
+          <h1>Tonight's Special Event</h1>
+
+          <pre>var onClickButton = function () {
+ console.log("You clicked on ", this); // What's "this"?
+ <span class="fragment">this.style.width = this.style.width * 2;</span>
+};
+
+document.getElementById('my-button')
+  .addEventListener("click", onClickButton);
+          </pre>
+
+          <aside class="notes">
+            We saw how to change elements in the last lesson. This is how we make those elements interactive. Can you guess the value of "this"? It's the element itself! You can attach the same function to multiple elements, and have the function change each element separately.
           </aside>
         </section>
 
@@ -314,6 +361,34 @@ setTimeout(showAlert, 5*1000);</pre>
             After the given number of milliseconds, it will call the function.
           </aside>
         </section>
+
+        <section>
+          <h1>Questions and Answers</h1>
+
+          <aside class="notes">
+            We've covered a <em>lot</em> of material so far, and dense material at that, so I'm sure there will be plenty of questions. Let's get started on those.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Follow-up</h1>
+
+          <ol>
+            <li>Read the Mozilla Developer Network (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions) documentation</li>
+            <li>Experiment with code</li>
+            <li>Email me with your questions: james@nycda.com</li>
+          </ol>
+
+          <aside class="notes">
+            There's still plenty more to cover in regard to functions, but the steps above will help quite a bit! We'll dive more into the particulars and edge cases next lesson. See you all next time!
+          </aside>
+        </section>
+
+        <section>
+          <h1>Keep Coding<br/>And<br/>Carry On</h1>
+          <p>&copy; James Holder 2015</p>
+        </section>
+
       </div>
 
 		</div>
