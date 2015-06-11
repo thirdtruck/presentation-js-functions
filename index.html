@@ -135,8 +135,8 @@ function myFunc (withArg) {
 
           <aside class="notes">
             The "function" keyword tells the compiler that we're defining a function.
-            The name of the function, here "myFunc." This part is optional, but we'll visit that in more detail soon.
-            The arguments to the function, just like the arguments you passed to the methods earlier.
+            The name of the function, here "myFunc," is optional. We'll revisit that.
+            The arguments to the function, just like method arguments.
             The code of the function itself, wrapped in curly brackets.
           </aside>
         </section>
@@ -242,7 +242,77 @@ function aFunc() {
 }
           </pre>
           <aside class="notes">
-            So what does that mean for functions? In JavaScript (in general) (unlike some other languages), there's <em>always</em> a "this". Browsers default to the "window" object and node.js defaults to "root". And, since functions in JavaScript technically have a subject, they're indistinguishable from methods in practice. (And that's even before we get into the more advanced things we can do with functions.)
+            What does that mean for functions? In JavaScript, there's <em>always</em> a "this". Browsers default the to "window" object. node.js defaults to "root". Since functions always have a subject, they're indistinguishable from methods.
+        </section>
+
+        <section>
+          <h1>Functions and Names</h1>
+
+          <pre>var aFunc = function () { /* ... */ }; </pre>
+          
+          <aside class="notes">
+            The similarities don't end there. They're interchangeable on multiple levels. Functions are first-class, like numbers and strings, etc., so you can assign them to variables. (Not quite the same.)
+          </aside>
+        </section>
+
+        <section>
+          <h1>Functions as Properties</h1>
+
+          <pre>anObject.aMethod = aFunc;</pre>
+
+          <aside class="notes">
+            And that means you can assign functions to objects as properties!
+          </aside>
+        </section>
+
+        <section>
+          <h1>"This" is Important</h1>
+
+          <pre>
+var aFunc = function () { console.log(this) };
+aFunc(); <em>// "window" or "root"</em>
+anObject.aMethod = aFunc;
+anObject.aMethod(); <em>// ?</em><span class="fragment">
+                    <em>// this === anObject</em></span>
+          </pre>
+
+          <aside class="notes">
+            Can you guess what "this" will be when aMethod is called? anObject! Correct! By assigning the function to the property of the object, we've changed the function's subject.
+          </aside>
+        </section>
+
+        <section>
+          <h1>"This" Isn't Always That</h1>
+
+          <pre class="fragment">var aFunc = function () { console.log(this === anObject) };
+anObject.aMethod = aFunc;
+anotherObject.anotherMethod = aFunc;</pre>
+          <pre class="fragment">anObject.aMethod(); <em>// true</em></pre>
+          <pre class="fragment">anotherObject.anotherMethod(); <em>// <strong>false!</strong> anObject !== anotherObject</em></pre>
+
+          <aside class="notes">
+            The value of "this" can change. It all depends on the subject of the method.
+          </aside>
+        </section>
+
+        <section>
+          <h1>"This" is Complicated</h1>
+
+          <aside class="notes">
+            Don't worry if you're feeling a bit dizzy. This is a lot to absorb at once, and it's still more nuanced than we've covered here. For now, we'll look at some practical uses of functions.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Later, Alligator</h1>
+          
+          <pre>var showAlert = function () { alert("Done!"); };
+setTimeout(showAlert, 5*1000);</pre>
+
+          <aside class="notes">
+            setTimeout is a function that takes a function and a number of milliseconds.
+            After the given number of milliseconds, it will call the function.
+          </aside>
         </section>
       </div>
 
