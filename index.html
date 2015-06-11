@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+        <section>
+          <h1>Functions in JavaScript</h1>
+          <h3>Lets Get Functional</h3>
+
+          <aside class="notes">
+            Good afternoon. It's a pleasure seeing you again. Are you excited about our next topic? I am.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Review</h1>
+          <aside class="notes">
+            Before we jump in, let's review what we've covered so far.
+          </aside>
+        </section>
+
+        <section>
+          <h2>The Purpose and Uses of JavaScript</h2>
+
+          <aside class="notes">
+            We discussed the purpose of JavaScript and the many ways in which it's used: in the browser, on the server with node, and in games. (This very presentation uses JavaScript in both the browser and on the server!)
+          </aside>
+        </section>
+
+        <section>
+          <h2>Methods and Calling Them</h2>
+
+          <aside class="notes">
+            Next, we discussed methods and how to call them. When writing JavaScript, you will likely spend more time on calling methods than on anything else, so you may want to go back and review this part if you feel at all unsure about it.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Basic Operations</h2>
+
+          <aside class="notes">
+            We then covered basic operations: doing math, changing strings, variables and properties, and the like. We used a lot of methods here. Now, before we continue, let me stop and thank you for your patience. We covered quite a bit of material here, all while only seeing our results on the console.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Changing the Webpage</h2>
+
+          <aside class="notes">
+            But it was worth the wait, wasn't it? We ended up doing some pretty cool stuff once we started changing the webpage itself, didn't we?
+          </aside>
+        </section>
+
+        <section>
+          <h1>Review</h1>
+          <ul>
+            <li>The Purpose and Uses of JavaScript</li>
+            <li>Calling Methods</li>
+            <li>Basic Operations</li>
+            <li>Changing the Webpage</li>
+          </ul>
+
+          <aside class="notes">
+            I thought you'd appreciate seeing some dramatic results before we moved onto the next part, which gets much more technical. Are you ready?
+          </aside>
+        </section>
+
+        <section>
+          <h1>Functions in JavaScript</h1>
+          <h3>Or How I Learned to Stop Worrying and Love Variable Closure</h3>
+          <aside class="notes">
+            Now we'll talk about a fundamental part of JavaScript: Functions.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Defining Functions</h1>
+          <h3>The <code>function</code> keyword</h3>
+          <pre>
+function myFunc (withArg) {
+  console.log("This function was called, and with " + withArg + "!");
+}
+          </pre>
+
+          <aside class="notes">
+            Here's how we define a function. We'll go over each part of the syntax now.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Defining Functions</h1>
+          <h3>The <code>function</code> keyword</h3>
+          <pre>
+<span class="fragment">function</span> <span class="fragment">myFunc</span><span class="fragment"> (withArg)</span> <span class="fragment">{
+  console.log("This function was called, and with " + withArg + "!");
+}</span>
+          </pre>
+
+          <aside class="notes">
+            The "function" keyword tells the compiler that we're defining a function.
+            The name of the function, here "myFunc." This part is optional, but we'll visit that in more detail soon.
+            The arguments to the function, just like the arguments you passed to the methods earlier.
+            The code of the function itself, wrapped in curly brackets.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Calling Functions</h1>
+          <p>In the console or on the command line:</p>
+          <pre>
+&gt;&gt; myFunc("A String");
+
+<em>   This function was called with A String!</em>
+          </pre>
+          <aside class="notes">
+            To use the code in the function, we call it like so: with the name, then parens around each of the arguments. Looks familiar, doesn't it? Let's review.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Methods</h1>
+          <p>Always called with a subject: <code><strong>myVariable</strong>.itsMethod()</code>.</p>
+          <p>e.g. <code><strong>console</strong>.log("Example String")</code>.</p>
+          <aside class="notes">
+            Here's a description of methods in JavaScript ... (I'll explain "subject" in a moment.)
+          </aside>
+        </section>
+
+        <section>
+          <h1>Functions</h1>
+          <p>No subject: <code><strong>aFunction()</strong></code>.</p>
+          <p>e.g. <code><strong>alert("A Message")</strong></code>.</p>
+          <aside class="notes">
+            ... And a description of functions.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Methods</h1>
+          <p>Always called with a subject: <code><strong>myVariable</strong>.itsMethod()</code>.</p>
+          <p>e.g. <code><strong>console</strong>.log("Example String")</code>.</p>
+
+          <h1>Functions</h1>
+          <p>No subject: <code><strong>aFunction()</strong></code>.</p>
+          <p>e.g. <code><strong>alert("A Message")</strong></code>.</p>
+
+          <aside class="notes">
+            The similarity is uncanny, isn't it?
+          </aside>
+        </section>
+
+        <section>
+          <h1>Methods vs. Functions</h1>
+          <h3>The War of the Words</h3>
+
+          <aside class="notes">
+            Well then, what does it mean for a method to "be called with a subject"? That requires some context, and a relevation: In JavaScript, methods <em>are</em> functions! (Big caveat: The distinction between methods and functions is stronger in some other languages.)
+          </aside>
+        </section>
+
+        <section>
+          <h1>Creating Methods</h1>
+          <pre>
+anObject.itsMethod = function () {
+  console.log("Called a method on an object.");
+};
+          </pre>
+          <aside class="notes">
+            And here's how they're created: by assigning them to properties on objects. Here's the thing: This is more than just a nice way of managing your code (as opposed to defining all of your methods at the top level).
+          </aside>
+        </section>
+
+        <section>
+          <h1>"this" is What You Wanted</h1>
+          <pre>
+anObject.aProperty = "this is a property";
+anObject.aMethod = function () {
+  console.log("The property aProperty is set to: " + this.aProperty");
+};
+anObject.aMethod() <em> // "This property aProperty is set to: this is a property"</em>
+          <aside class="notes">
+            "What a minute," you're saying. "What's does 'this' mean, and why are you using it when you still haven't explained what it means for a method to be called with a subject?"
+          </aside>
+        </section>
+
+        <section>
+        <h1>"this" is What it Means</h1>
+          <pre>
+anObject.aMethod = function () {
+  console.log(anObject === this); <em>// true</em>
+}
+          </pre>
+          <aside class="notes">
+            "this" is the implicit subject! Using "this," we don't have to name the subject explicitly. This will become <em>very</em> important soon.
+          </aside>
+        </section>
+
+        <section>
+          <h1>Functions and "this"</h1>
+          <pre>
+function aFunc() {
+  console.log(aFunc === this); <em>// <strong>false</strong></em>
+  <span class="fragment">console.log(window === this); <em>// true (in a browser)</em>
+  console.log(root === this); <em>// true (in node.js)</em></span>
+}
+          </pre>
+          <aside class="notes">
+            So what does that mean for functions? In JavaScript (in general) (unlike some other languages), there's <em>always</em> a "this". Browsers default to the "window" object and node.js defaults to "root". And, since functions in JavaScript technically have a subject, they're indistinguishable from methods in practice. (And that's even before we get into the more advanced things we can do with functions.)
+        </section>
+      </div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
